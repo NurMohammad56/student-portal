@@ -15,7 +15,7 @@ const ResultPage = () => {
   const handleSearch = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:7000/api/v1/students/getStudent",
+        "http://localhost:7000/api/v1/students/getStudentByDetails",
         {
           params: search,
         }

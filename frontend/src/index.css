@@ -96,3 +96,29 @@ h1 {
   font-size: 1rem;
   color: #4b5563;
 }
+
+.student-list {
+  margin-top: 2rem;
+}
+
+.student-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.button-edit {
+  background-color: #f59e0b; /* কমলা রঙ */
+  color: white;
+  margin-left: 0.5rem;
+}
+
+.button-delete {
+  background-color: #ef4444; /* লাল রঙ */
+  color: white;
+  margin-left: 0.5rem;
+}
