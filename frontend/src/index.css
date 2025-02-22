@@ -111,6 +111,10 @@ h1 {
   margin-bottom: 1rem;
 }
 
+.student-item p {
+  margin-right: 15px;
+}
+
 .button-edit {
   background-color: #f59e0b; /* কমলা রঙ */
   color: white;

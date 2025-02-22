@@ -22,7 +22,6 @@ const AdminPanel = () => {
     passingYear: "",
   });
 
-  // সব স্টুডেন্ট ডাটা ফেচ করার জন্য
   useEffect(() => {
     fetchStudents();
   }, []);
@@ -32,25 +31,17 @@ const AdminPanel = () => {
       const response = await axios.get(
         "http://localhost:7000/api/v1/students/getAllStudents"
       );
-      console.log("Response Data:", response.data); // রেসপন্স ডাটা লগ করুন
       setStudents(response.data); // ডাটা সেট করুন
     } catch (error) {
       console.error("Error fetching students:", error.message);
     }
   };
 
-  // স্টেট আপডেট সঠিকভাবে হচ্ছে কিনা চেক করুন
-  useEffect(() => {
-    console.log("Students State:", students);
-  }, [students]);
-
-  // ফর্ম হ্যান্ডলার
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // স্টুডেন্ট যোগ করার জন্য
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -75,24 +66,22 @@ const AdminPanel = () => {
         session: "",
         passingYear: "",
       });
-      fetchStudents(); // নতুন ডাটা ফেচ করুন
+      fetchStudents();
     } catch (error) {
       console.error("Error adding student:", error);
     }
   };
 
-  // স্টুডেন্ট এডিট করার জন্য
   const handleEdit = (student) => {
     setEditStudent(student);
-    setFormData(student); // ফর্মে এডিট করার জন্য ডাটা সেট করুন
+    setFormData(student);
   };
 
-  // এডিট করা ডাটা আপডেট করার জন্য
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:7000/api/v1/students/updateStudent/${editStudent.id}`, // student ID
+        `http://localhost:7000/api/v1/students/updateStudent/${editStudent.id}`,
         formData
       );
       alert("Student updated successfully!");
@@ -119,7 +108,6 @@ const AdminPanel = () => {
     }
   };
 
-  // স্টুডেন্ট ডিলিট করার জন্য
   const handleDelete = async (id) => {
     if (!id) {
       alert("Invalid student ID!");
@@ -131,8 +119,8 @@ const AdminPanel = () => {
         `http://localhost:7000/api/v1/students/deleteStudent/${id}`
       );
 
-      alert(response.data.message); // সার্ভার থেকে রেসপন্স মেসেজ দেখাবে
-      fetchStudents(); // নতুন ডাটা লোড করো
+      alert(response.data.message);
+      fetchStudents();
     } catch (error) {
       console.error(
         "Error deleting student:",
@@ -177,12 +165,11 @@ const AdminPanel = () => {
         )}
       </form>
 
-      {/* স্টুডেন্ট লিস্ট দেখানোর জন্য */}
       <div className="student-list">
         <h2>Student List</h2>
         {students.length > 0 ? (
           students.map((student) => (
-            <div key={student.id} className="student-item">
+            <div key={student._id} className="student-item">
               <p>Name: {student.name}</p>
               <p>ID: {student.id}</p>
               <p>CGPA: {student.cgpa}</p>
